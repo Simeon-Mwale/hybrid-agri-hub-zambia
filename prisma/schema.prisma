@@ -1,0 +1,161 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model User {
+  id       String  @id @default(cuid())
+  fullName String
+  email    String  @unique
+  phone    String? @unique
+  password String
+  role     String  @default("FARMER")
+  isActive Boolean @default(true)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  priceAlerts        PriceAlert[]
+  activities         Activity[]
+  farmerRegistration FarmerRegistration?
+}
+
+model Activity {
+  id          String   @id @default(cuid())
+  type        String
+  description String
+  status      String?
+  createdAt   DateTime @default(now())
+  metadata    String?
+  userId      String?
+  user        User?    @relation(fields: [userId], references: [id])
+}
+
+model Crop {
+  id       String  @id @default(cuid())
+  name     String  @unique
+  category String?
+  unit     String  @default("50kg bag")
+
+  createdAt DateTime @default(now())
+
+  prices      DailyPrice[]
+  predictions Prediction[]
+  priceAlerts PriceAlert[]
+}
+
+model Market {
+  id       String  @id @default(cuid())
+  name     String  @unique
+  province String
+  district String?
+
+  createdAt DateTime @default(now())
+
+  prices      DailyPrice[]
+  predictions Prediction[]
+  priceAlerts PriceAlert[]
+}
+
+model DailyPrice {
+  id        String   @id @default(cuid())
+  cropId    String
+  marketId  String
+  price     Float
+  priceDate DateTime
+  createdBy String?
+  createdAt DateTime @default(now())
+
+  crop   Crop   @relation(fields: [cropId], references: [id])
+  market Market @relation(fields: [marketId], references: [id])
+
+  @@unique([cropId, marketId, priceDate])
+  @@index([priceDate])
+  @@index([cropId, priceDate])
+
+  @@index([cropId, marketId, priceDate])
+}
+
+model Prediction {
+  id             String   @id @default(cuid())
+  cropId         String
+  marketId       String
+  predictedPrice Float
+  basedOnDays    Int
+  predictionDate DateTime
+  createdAt      DateTime @default(now())
+
+  crop   Crop   @relation(fields: [cropId], references: [id])
+  market Market @relation(fields: [marketId], references: [id])
+
+  @@unique([cropId, marketId, predictionDate], name: "crop_market_prediction_unique")
+}
+
+model SmsQueue {
+  id          String    @id @default(cuid())
+  phoneNumber String
+  message     String
+  status      String    @default("pending")
+  retries     Int       @default(0)
+  response    String?
+  error       String?
+  createdAt   DateTime  @default(now())
+  sentAt      DateTime?
+
+  @@unique([phoneNumber, message]) // ✅ ADD THIS
+
+  @@index([status, createdAt])
+  @@index([phoneNumber])
+}
+
+model PriceAlert {
+  id          String   @id @default(cuid())
+  userId      String
+  cropId      String
+  marketId    String
+  targetPrice Float
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+
+  user   User   @relation(fields: [userId], references: [id])
+  crop   Crop   @relation(fields: [cropId], references: [id])
+  market Market @relation(fields: [marketId], references: [id])
+
+  @@unique([userId, cropId, marketId])
+}
+
+model UssdSession {
+  id          String   @id @default(cuid())
+  sessionId   String   @unique
+  phoneNumber String
+  step        String   @default("main")
+  data        String   @default("{}")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model UssdRequest {
+  id          String   @id @default(cuid())
+  phoneNumber String
+  sessionId   String
+  input       String
+  response    String
+  createdAt   DateTime @default(now())
+
+  @@index([phoneNumber])
+  @@index([createdAt])
+}
+
+model FarmerRegistration {
+  id          String   @id @default(cuid())
+  phoneNumber String   @unique
+  fullName    String?
+  channel     String   @default("web")
+  userId      String?  @unique
+  user        User?    @relation(fields: [userId], references: [id])
+  createdAt   DateTime @default(now())
+}

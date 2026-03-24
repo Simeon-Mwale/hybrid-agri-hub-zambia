@@ -1,0 +1,58 @@
+ Your correct startup sequence:
+Terminal 1 — Next.js:
+bash
+npm run dev
+
+Terminal 2 — ngrok:
+bash
+npx ngrok http 3000
+
+Terminal 3 — Python price service:
+bash
+cd price_service
+python -m uvicorn main:app --reload --port 8000
+Start each service manually
+
+a) Start ngrok
+npx ngrok http 3000
+Copy the public URL it gives you (e.g., https://antoine-aposematic-carole.ngrok-free.dev).
+Update your .env.local:
+NEXTAUTH_URL=https://antoine-aposematic-carole.ngrok-free.dev
+NEXTAUTH_URL_INTERNAL=http://localhost:3000
+b) Start Next.js dev server
+npx next dev --turbo
+This will run your frontend on http://localhost:3000.
+Turbopack + SWC will make compilation faster.
+c) Start Uvicorn price service
+python -m uvicorn price_service.main:app --reload --port 8000
+Backend API running at http://localhost:8000.
+
+
+
+
+AT_API_KEY=your_key_here
+AT_USERNAME=sandbox
+```
+
+And I'll help you debug without needing to see the actual key. 
+
+**To fix the current issue, just tell me:**
+
+1. What do you see when you open this in your browser:
+```
+https://antoine-aposematic-carole.ngrok-free.dev/api/ussd
+```
+
+2. Is ngrok running in a terminal right now? Does it show:
+```
+  https://antoine-aposematic-carole.ngrok-free.dev -> http://localhost:3000
+
+
+# Terminal 1: FastAPI backend
+cd price_service
+uvicorn main:app --reload --reload-delay 500
+
+# Terminal 2: Next.js frontend (with Turbopack)
+cd ..
+npm run dev  # or: npx next dev --turbo
+

@@ -1,0 +1,55 @@
+{
+  "name": "hybrid-agri-hub-zambia",
+  "version": "1.0.0",
+  "description": "Agricultural hub for Zambia",
+  "type": "module",
+  "scripts": {
+    "dev": "next dev --turbo",
+    "build": "next build",
+    "start": "next start",
+    "seed": "node prisma/seed.cjs",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.22.0",
+    "@types/bcrypt": "^6.0.0",
+    "africastalking": "^0.7.9",
+    "agenda": "^6.2.3",
+    "bcrypt": "^6.0.0",
+    "bcryptjs": "^3.0.3",
+    "bull": "^4.16.5",
+    "chart.js": "^4.5.1",
+    "cookie": "^1.1.1",
+    "jose": "^6.2.2",
+    "jsonwebtoken": "^9.0.3",
+    "lucide-react": "^0.576.0",
+    "ml-random-forest": "^2.1.0",
+    "ml-regression": "^6.3.0",
+    "next": "^16.2.1",
+    "next-auth": "^4.24.13",
+    "node-cron": "^4.2.1",
+    "react": "^18.3.1",
+    "react-chartjs-2": "^5.3.1",
+    "react-dom": "^18.3.1",
+    "recharts": "^3.7.0",
+    "socket.io": "^4.8.3",
+    "socket.io-client": "^4.8.3",
+    "twilio": "^5.12.2",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.2.0",
+    "@types/node": "^20.19.33",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "autoprefixer": "^10.4.24",
+    "postcss": "^8.5.6",
+    "prisma": "^5.22.0",
+    "tailwindcss": "^4.2.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
+  },
+  "prisma": {
+    "seed": "node prisma/seed.cjs"
+  }
+}

@@ -1,0 +1,106 @@
+Folder PATH listing
+Volume serial number is 0000002C C217:8D23
+C:\USERS\VEX TECH\DEV\HYBRID-AGRI-HUB-ZAMBIA\SRC\APP\DASHBOARD
+|   page.tsx
+|   
++---admin
+|   |   page.tsx
+|   |   
+|   +---alert
+|   |       page.tsx
+|   |       
+|   +---crops
+|   |       page.tsx
+|   |       
+|   +---markets
+|   |       page.tsx
+|   |       
+|   +---prices
+|   |       upload.tsx
+|   |       
+|   +---sms-queue
+|   |       page.tsx
+|   |       
+|   +---upload-price
+|   |       page.tsx
+|   |       
+|   \---users
+|           page.tsx
+|           
+\---farmer
+    |   page.tsx
+    |   
+    +---alerts
+    |       page.tsx
+    |       
+    \---prices
+            page.tsx
+            
+Folder PATH listing
+Volume serial number is 000000A1 C217:8D23
+C:\USERS\VEX TECH\DEV\HYBRID-AGRI-HUB-ZAMBIA\SRC\APP\API
++---admin
+|   +---crops
+|   |       route.ts
+|   |       
+|   +---markets
+|   |       route.ts
+|   |       
+|   +---prices
+|   |   |   route.ts
+|   |   |   
+|   |   \---trends
+|   |           route.ts
+|   |           
+|   +---sms-queue
+|   |       route.ts
+|   |       
+|   +---stats
+|   |       route.ts
+|   |       
+|   \---users
+|           route.ts
+|           
++---auth
+|   +---login
+|   |       route.ts
+|   |       
+|   +---logout
+|   |       route.ts
+|   |       
+|   +---me
+|   |       route.ts
+|   |       
+|   \---register
+|           route.ts
+|           
++---farmer
+|   +---alerts
+|   |       route.ts
+|   |       
+|   +---prices
+|   |   |   route.ts
+|   |   |   
+|   |   \---trends
+|   |           route.ts
+|   |           
+|   \---sms
+|           route.ts
+|           
++---prices
+|       route.ts
+|       
+\---sms
+        route.ts
+        
+Folder PATH listing
+Volume serial number is 000000C9 C217:8D23
+C:\USERS\VEX TECH\DEV\HYBRID-AGRI-HUB-ZAMBIA\SRC\COMPONENTS
+    Card.tsx
+    Navbar.tsx
+    PriceTable.tsx
+    PriceTrendChart.tsx
+    StatusBadge.tsx
+    
+No subfolders exist 
+

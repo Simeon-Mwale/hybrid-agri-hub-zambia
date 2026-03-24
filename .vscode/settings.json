@@ -1,0 +1,26 @@
+{
+  "cSpell.words": [
+    "Agri",
+    "fastapi",
+    "initialise",
+    "maxiter",
+    "personalise",
+    "scikit",
+    "sublabel",
+    "Turbopack",
+    "uvicorn"
+  ],
+  "python.showStartPage": false,
+  "extensions.ignoreRecommendations": true,
+  "files.watcherExclude": {
+    "**/.next/**": true,
+    "**/node_modules/**": true,
+    "**/prisma/dev.db": true
+  },
+  "search.exclude": {
+    "**/.next": true,
+    "**/node_modules": true
+  },
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "editor.formatOnSave": true
+}
